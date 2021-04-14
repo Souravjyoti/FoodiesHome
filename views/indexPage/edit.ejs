@@ -1,0 +1,14 @@
+<%- include("../partials/header") %>
+
+<div class="container" style="margin-top: 25px">
+    <h1 style="text-align: center">Edit your post</h1>
+    <form action="/index/<%=post._id%>?_method=PUT" method="POST" style="width: 45%; margin: 20px auto">
+      <div class="form-group">
+        <input type="text" name="post[caption]" value="<%= post.caption %>" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+<%- include("../partials/footer") %>

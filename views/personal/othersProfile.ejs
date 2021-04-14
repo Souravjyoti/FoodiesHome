@@ -1,0 +1,68 @@
+<%- include('../partials/header') %>
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/customProfile.css">
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div id="leftSide">
+            	<img src="/display/<%= user.imageName %>">
+            	<hr style="width: 180px">
+            	<h2 style="font-weight: bold; font-size: 21px; text-align: center;"><%= user.username %></h2>
+            </div>
+        </div>
+        
+        <div class="col-md-9">
+            <div id="mainBody">
+                <h2 style="font-weight: bold;">Posts</h2>
+                <% for(var i=(post.length-1);i>=0;i--){ %>
+                	<p id="captionIndexpage"><%= post[i].caption %></p>
+                    <img src="/display/<%= post[i].imageName %>" style="width: 80%; height: auto; margin: 0 auto;">
+                    
+                    <div>
+                        <a href="/index/<%= post[i]._id %>" class="btn btn-primary" style="margin-top: 15px;">More</a>
+                    </div>
+                    
+                    <div style="margin-top: 10px;">
+                        <a href="/index/<%= post[i]._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+                        <form style="float: left;" class="deleteButton" action="/index/<%= post[i]._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    
+                    <form action="/index/<%= post[i]._id %>/comment" method="POST" style="margin-top: 10px; margin-bottom: 10px;">
+                        <input class= "commentInput" type="text" placeholder="Comment" name="comment">
+                        <button class="btn btn-primary btn-md">Add</button>
+                    </form>
+                    
+                    <!--ONLY DISPLAY MAX 2 COMMENTS IN INDEX PAGE-->
+                    <% var numberOfCommments = 0; %>
+                    
+                    <% if(post[i].comments.length > 2){ %>
+                        <% numberOfCommments = post[i].comments.length; %>
+                        <p>
+                            <strong><%= post[i].comments[numberOfCommments-1].author.username %></strong> - <%=post[i].comments[numberOfCommments-1].text%>
+                        </p>
+                        <p>
+                            <strong><%= post[i].comments[numberOfCommments-2].author.username %></strong> - <%=post[i].comments[numberOfCommments-2].text%>
+                        </p>
+                    <% } else{%>
+                        <% numberOfCommments = post[i].comments.length; %>
+                        <% for(var j=numberOfCommments-1;j>=0;j--){ %>
+                            <p>
+                                <strong><%= post[i].comments[j].author.username %></strong> - <%=post[i].comments[j].text%>
+                            </p>
+                        <% } %>
+                    <% } %>
+                    
+                    <hr>
+                    <br>
+                <% } %>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>
+
+<%- include('../partials/footer') %>
+

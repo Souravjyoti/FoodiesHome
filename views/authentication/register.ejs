@@ -1,0 +1,40 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+  <form action="/register" method="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-4">
+          <!--<h3>Add Profile Picture: </h3>-->
+          <div class="form-group" style="margin: 45px auto; width: 90%;">
+            <label style="font-weight :bold;">Add Profile Picture : </label>
+            <input type="file" name="file" class="form-control" id="inputGroupFile02">
+            <p style="font-size: 15px; color: red;">* only jpg/jpeg/png format of size less than 1mb</p>
+            
+            <div class="sizeReduce">
+                <p>Make sure your image is less than 1mb. 
+                This is important due to memory constraints and performance reasons.</p>
+                <p>To reduce your image size online, click <a href="https://www.imgonline.com.ua/eng/compress-image-size.php" target="_blank">here</a>.</p>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="col-md-8">
+          <div class="container" style="margin: 25px auto; width: 70%;">
+            <h1 style="text-align: center">Sign Up to FoodiesHome</h1>
+            <div class="form-group">
+              <input type="text" name="username" placeholder="Username" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <input type="password" name="password" placeholder="Password" class="form-control" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+          </div>
+        </div>
+    </div> 
+  </form>
+</div>
+
+<%- include('../partials/footer') %>

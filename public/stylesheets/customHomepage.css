@@ -1,0 +1,78 @@
+.navbarCustom{
+    font-family: 'Lato', sans-serif;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+	font-size: 18px;
+}
+
+.navbar-brand{
+    font-family: 'Lato', sans-serif;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+	font-size: 26px;
+    font-weight: 700;
+}
+
+body{
+	/*background: url(https://images.unsplash.com/photo-1588001291548-948f55922bfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60);*/
+	background: url(https://images.unsplash.com/photo-1524239077444-27413e763bba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
+	background-size: cover;
+	font-family: 'Lato', sans-serif;
+	background-repeat: no-repeat;
+}
+
+#content{
+	text-align: center;
+	padding-top: 15%;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+}
+
+html{
+	height: 100%;
+}
+
+h3{
+	color:white;
+}
+
+h1{
+	color:white;
+	font-weight: 700;
+	font-size: 5em;
+}
+
+hr{
+	width: 400px;
+	border-top: 1px solid white;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+#welcomeHeader{
+	font-family: 'Anton', sans-serif;
+	font-size: 3em;
+	letter-spacing: 1.5px;
+}
+
+#tagLine{
+	font-family: 'Lato', sans-serif;
+	font-size: 22px;
+}
+
+footer{
+        position: relative;
+        height: 300px;
+        width: 100%;
+        /*background-color: #333333;*/
+    }
+
+#copyright {
+    position: absolute;
+    width: 100%;
+    line-height: 20px;
+    text-align: center;
+    bottom:0;
+}

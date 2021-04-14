@@ -1,0 +1,38 @@
+<%- include('../partials/header') %>
+<link rel="stylesheet" type="text/css" href="/stylesheets/customAccount.css">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="fullBody">
+            	<img src="/display/<%= currentUser.imageName %>">
+            	<hr style="width: 180px">
+            	<h2><%= currentUser.username %></h2>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <form action="/<%= currentUser._id %>/updatePic?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div class="form-group" style="margin: 45px auto; width: 90%;">
+                    <label style="font-weight :bold;">Update Profile Picture : </label>
+                    <input type="file" name="file" class="form-control" id="inputGroupFile02">
+                    <p style="font-size: 15px; color: red;">* only jpg/jpeg/png format of size less than 1mb</p>
+                </div>
+                
+                <div class="sizeReduce" style="width: 90%; margin: 0 auto;">
+                    <p>Make sure your image is less than 1mb. 
+                    This is important due to memory constraints and performance reasons.</p>
+                    <p>To reduce your image size online, click <a href="https://www.imgonline.com.ua/eng/compress-image-size.php" target="_blank">here</a>.</p>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block" style="width: 90%; margin: 0 auto;">Update</button>
+                
+                
+            </form>
+
+        </div>
+    </div>
+    
+</div>
+
+<%- include('../partials/footer') %>
+

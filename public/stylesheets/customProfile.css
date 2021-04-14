@@ -1,0 +1,18 @@
+#leftSide{
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#leftSide img{
+    width: 150px;
+    height: auto;
+}
+
+#mainBody{
+    font-family: 'Lato', sans-serif;
+    margin-left: 10%;
+    margin-top: 30px;
+}

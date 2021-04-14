@@ -1,0 +1,121 @@
+.navbarCustom{
+    font-family: 'Lato', sans-serif;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+	font-size: 18px;
+}
+
+.navbar-brand{
+    font-family: 'Lato', sans-serif;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.2),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+	font-size: 26px;
+    font-weight: 700;
+}
+
+body{
+	/*background: url(https://images.unsplash.com/photo-1517217451453-818405428795?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);*/
+	/*background-size: cover;*/
+	font-family: 'Lato', sans-serif;
+}
+
+.jumbotron{
+/*background: #6D6027;*/
+/*background: -webkit-linear-gradient(to right, #D3CBB8, #6D6027);*/
+/*background: linear-gradient(to right, #D3CBB8, #6D6027); */
+font-family: 'Lato', sans-serif;
+
+background: #bdc3c7;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+color: white;
+}
+
+#jumboWelcome{
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.2),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+	font-size: 32px;
+    font-weight: 700;
+}
+
+#jumboTag{
+	font-size: 18px;
+}
+
+#welcomeHeader{
+	font-family: 'Anton', sans-serif;
+	font-size: 3em;
+	letter-spacing: 1.5px;
+}
+
+#tagLine{
+	font-family: 'Lato', sans-serif;
+	font-size: 22px;
+}
+
+.commentInput{
+	margin-top: 10px;
+	border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px;
+  width: 400px;
+  height: 20px;
+}
+
+#nameOfDishIndexpage{
+	font-family: 'Lato', sans-serif;
+	font-size: 32px;
+    font-weight: 700;
+}
+
+#captionIndexpage{
+	font-family: 'Lato', sans-serif;
+	font-size: 20px;
+	margin-top: 15px;
+}
+
+footer{
+        position: relative;
+        height: 300px;
+        width: 100%;
+        /*background-color: #333333;*/
+    }
+
+#copyright {
+    position: absolute;
+    width: 100%;
+    line-height: 20px;
+    text-align: center;
+    bottom:0;
+}
+
+#creatorDetail img{
+	height: 72px;
+    width: 70px;
+    /*height:auto;
+    width:auto;*/
+    border-radius: 50%;
+}
+
+#creatorDetail .creatorName{
+	text-decoration:none;
+	font-family: 'Lato', sans-serif;
+	color: black;
+	display: inline-block;
+	margin-left: 20px;
+	font-size: 35px;
+	font-weight: 700;
+	margin-top: 12px;
+}
+
+.sizeReduce{
+	margin-top: 40px;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;
+	font-weight: bold;
+	color: red;
+}

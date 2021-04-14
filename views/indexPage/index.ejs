@@ -1,0 +1,66 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+              <h1 id="jumboWelcome"><i class="fas fa-utensils"></i> Welcome to FoodiesHome!</h1>
+              <p id="jumboTag">An awesome collection of authentic food right from the kitchen</p>
+              <a class="btn btn-primary btn-md" href="/index/new">Add Post</a>
+        </div>
+    </header>
+    
+    <% for(var i=(post.length-1);i>=0;i--){ %>
+        <div id="creatorDetail">
+    		<!--<img src="display/%= post[i].creator.profPic %>">-->
+    		<a id="profileImage" href="/<%= post[i].creator.id %>/othersProfile">
+    		    <img src="display/<%= post[i].creator.profPic %>">
+    		</a>
+    		<a class="creatorName" href="/<%= post[i].creator.id %>/othersProfile"><%= post[i].creator.username %></a>
+    		<!--<h2 id="creatorName">%= post[i].creator.username %></h2>-->
+    	</div>
+    	<p id="captionIndexpage"><%= post[i].caption %></p>
+        <img src="display/<%= post[i].imageName %>" style="width: 100%; height: auto;">
+        
+        <% if(currentUser && currentUser._id.equals(post[i].creator.id)){ %>
+            <div style="margin-top: 10px;">
+                <a href="/index/<%= post[i]._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+                <form style="float: left;" class="deleteButton" action="/index/<%= post[i]._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </div>
+        <% } %>
+        
+        <a href="/index/<%= post[i]._id %>" class="btn btn-primary" style="margin-top: 15px;">More</a>
+        
+        <form action="/index/<%= post[i]._id %>/comment" method="POST" style="margin-top: 10px; margin-bottom: 10px;">
+            <input class= "commentInput" type="text" placeholder="Comment" name="comment">
+            <button class="btn btn-primary btn-md">Add</button>
+        </form>
+        
+        <!--ONLY DISPLAY MAX 2 COMMENTS IN INDEX PAGE-->
+        <% var numberOfCommments = 0; %>
+        
+        <% if(post[i].comments.length > 2){ %>
+            <% numberOfCommments = post[i].comments.length; %>
+            <p>
+                <strong><%= post[i].comments[numberOfCommments-1].author.username %></strong> - <%=post[i].comments[numberOfCommments-1].text%>
+            </p>
+            <p>
+                <strong><%= post[i].comments[numberOfCommments-2].author.username %></strong> - <%=post[i].comments[numberOfCommments-2].text%>
+            </p>
+        <% } else{%>
+            <% numberOfCommments = post[i].comments.length; %>
+            <% for(var j=numberOfCommments-1;j>=0;j--){ %>
+                <p>
+                    <strong><%= post[i].comments[j].author.username %></strong> - <%=post[i].comments[j].text%>
+                </p>
+            <% } %>
+        <% } %>
+        
+        <hr>
+        <br>
+    <% } %>
+    
+</div>
+
+<%- include('../partials/footer') %>
