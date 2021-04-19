@@ -7,5 +7,5 @@ Features:
 1. Post pictures of your home made food.
 2. View and comment on other's posts.
 3. See your dashboard which shows all the posts you made.
-4. User authentification added.
+4. User authentication added.
 5. Profile picture feature added.
