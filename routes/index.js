@@ -11,9 +11,10 @@ var path = require("path"),
     Grid = require("gridfs-stream"),
     mongoose = require("mongoose");
 
+var dburl = process.env.DATABASEURL;
 
-var dburl = process.env.DATABASEURL || "mongodb://localhost/foodiesv5";
-var conn = mongoose.createConnection(dburl);
+// Get the mongo connection that we already have
+const conn = mongoose.connection;
 
 //init gfs
 let gfs;
@@ -75,7 +76,6 @@ router.post("/register", upload.single("file"), function(req,res){
             }
         });
     }
-    //1048576
     else{
         User.register(new User({username: req.body.username, imageName: req.file.filename}), req.body.password, function(err, user){
             if(err){
@@ -89,7 +89,7 @@ router.post("/register", upload.single("file"), function(req,res){
                 });
             }
         });
-        
+
     }
 });
 
@@ -106,7 +106,7 @@ router.post("/login", passport.authenticate("local" ,
        failureFlash: 'Invalid username or password.',
       successFlash: 'Welcome to FoodiesHome!'
     }), function(req, res){
-        
+
 });
 
 //Logout route
@@ -145,7 +145,7 @@ router.get("/display/:filename", function(req, res){
 
 //GET ROUTER FOR MY ACCOUNT
 router.get("/:id/account", middleware.isLoggedIn, function(req, res){
-   res.render("personal/account"); 
+   res.render("personal/account");
 });
 
 
@@ -154,7 +154,7 @@ router.put("/:id/updatePic", [middleware.isLoggedIn, upload.single("file")], fun
     User.findByIdAndUpdate(req.params.id, {imageName: req.file.filename}, function(err, updatedUser){
        if(err){
            console.log(err);
-       } 
+       }
        else{
            //UPDATE CREATOR DATA IN POSTCONTENT
            var myquery = { "creator.id": req.params.id };
@@ -164,7 +164,7 @@ router.put("/:id/updatePic", [middleware.isLoggedIn, upload.single("file")], fun
                     console.log(err);
                 }
             });
-            
+
            res.redirect("/" + req.params.id + "/account");
        }
     });
@@ -175,7 +175,7 @@ router.get("/:id/profile", middleware.isLoggedIn, function(req, res){
    Postcontent.find({"creator.id": req.user.id}).populate("comments").exec(function(err, foundPost){
       if(err){
           console.log(err);
-      } 
+      }
       else{
           res.render("personal/profile", {post: foundPost});
           //console.log(foundPost.comments);
@@ -189,7 +189,7 @@ router.get("/:id/othersProfile", middleware.isLoggedIn, function(req, res){
     User.findById(req.params.id, function(err, foundUser){
        if(err){
            console.log(err);
-       } 
+       }
        else{
             Postcontent.find({"creator.id": req.params.id}).populate("comments").exec(function(err, foundPost){
                 if(err){
@@ -199,7 +199,7 @@ router.get("/:id/othersProfile", middleware.isLoggedIn, function(req, res){
                     res.render("personal/othersProfile", {user: foundUser, post: foundPost});
                 }
             })
-           
+
        }
     });
 });
@@ -207,7 +207,7 @@ router.get("/:id/othersProfile", middleware.isLoggedIn, function(req, res){
 
 //GET ROUTE FOR ABOUT US
 router.get("/about", middleware.isLoggedIn, function(req, res){
-   res.render("personal/about"); 
+   res.render("personal/about");
 });
 
 module.exports = router;

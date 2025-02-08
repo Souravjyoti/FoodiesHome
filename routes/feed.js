@@ -10,10 +10,10 @@ var path = require("path"),
     Grid = require("gridfs-stream"),
     mongoose = require("mongoose"),
     imageMagic = require("imagemagick");
-    
-    
-var dburl = process.env.DATABASEURL || "mongodb://localhost/foodiesv5";
-var conn = mongoose.createConnection(dburl);
+
+
+var dburl = process.env.DATABASEURL;
+const conn = mongoose.connection;
 
 //init gfs
 let gfs;
@@ -51,7 +51,7 @@ router.get("/index", middleware.isLoggedIn, function(req, res){
    Postcontent.find({}).populate("comments").exec(function(err, foundPost){
       if(err){
           console.log(err);
-      } 
+      }
       else{
           res.render("indexPage/index", {post: foundPost});
           //console.log(foundPost.comments);
@@ -60,7 +60,7 @@ router.get("/index", middleware.isLoggedIn, function(req, res){
 });
 
 router.get("/index/new", middleware.isLoggedIn, function(req, res){
-   res.render("indexPage/new"); 
+   res.render("indexPage/new");
 });
 
 //CHECK FILE SIZE
@@ -80,7 +80,7 @@ router.post("/index", [middleware.isLoggedIn, upload.single("file")], function(r
             username: req.user.username,
             profPic: req.user.imageName
         };
-        
+
         Postcontent.create({
             imageName: uploadedImageName,
             caption: req.body.caption,
@@ -94,7 +94,7 @@ router.post("/index", [middleware.isLoggedIn, upload.single("file")], function(r
                 User.findOne({username : req.user.username}, function(err, foundUser){
                    if(err){
                        console.log(err);
-                   } 
+                   }
                    else{
                        foundUser.pictures.push(uploadedImageName);
                        foundUser.save();
@@ -109,7 +109,7 @@ router.post("/index", [middleware.isLoggedIn, upload.single("file")], function(r
         req.flash("error", "Uploaded file should be less than 1mb..!");
         res.redirect("back");
     }
-    
+
 });
 
 
@@ -119,7 +119,7 @@ router.get("/index/:id", middleware.isLoggedIn, function(req, res){
    Postcontent.findById(req.params.id).populate("comments").exec(function(err, foundPost){
       if(err){
           console.log(err);
-      } 
+      }
       else{
           res.render("indexPage/show", {post: foundPost});
           //console.log(foundPost);
@@ -158,7 +158,7 @@ router.delete("/index/:id", middleware.checkPostOwnership, function(req,res){
     Postcontent.findByIdAndRemove(req.params.id, function(err, deletedCampground){
       if(err){
           res.redirect("/index/" +req.params.id);
-      } 
+      }
       else{
           req.flash("success", "Post deleted");
           res.redirect("/index");
