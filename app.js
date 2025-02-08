@@ -4,12 +4,13 @@ var mongoose = require("mongoose");
 var methodOverride = require("method-override");
 var flash = require("connect-flash");
 var path = require("path");
+require("dotenv").config();
 
 var User = require("./models/users"),
     passport = require("passport"),
     localStrategy = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose");
-    
+
 var feedRoute = require("./routes/feed"),
     commentRoute = require("./routes/comments"),
     authRoute = require("./routes/index");
@@ -17,8 +18,9 @@ var feedRoute = require("./routes/feed"),
 
 var app = express();
 
-// console.log(process.env.DATABASEURL);
-var dburl = process.env.DATABASEURL || "mongodb://localhost/foodiesv5";
+// For now, we will only connect to the database here.
+// In other places, we will just refer to this connection.
+var dburl = process.env.DATABASEURL;
 mongoose.connect(dburl);
 
 app.set("view engine", "ejs");
