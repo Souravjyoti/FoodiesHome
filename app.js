@@ -42,7 +42,28 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.urlencoded({extended: true}));
 
-passport.use(new localStrategy(User.authenticate()));
+passport.use(new localStrategy(
+  { usernameField: 'usernameOrEmail' }, // Accepts either username or email
+  async (usernameOrEmail, password, done) => {
+    try {
+      // Find user by username OR email
+      const user = await User.findOne({
+        $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }]
+      });
+
+      if (!user) return done(null, false, { message: "User not found" });
+
+      // Validate password using passport-local-mongoose's method
+      return user.authenticate(password, (err, authenticatedUser) => {
+        if (err) return done(err);
+        if (!authenticatedUser) return done(null, false, { message: "Incorrect password" });
+        return done(null, authenticatedUser);
+      });
+    } catch (err) {
+      return done(err);
+    }
+  }
+));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
