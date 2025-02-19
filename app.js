@@ -13,7 +13,7 @@ var User = require("./models/users"),
 
 var feedRoute = require("./routes/feed"),
     commentRoute = require("./routes/comments"),
-    authRoute = require("./routes/index");
+    authRoute = require("./routes/user");
 
 
 var app = express();
